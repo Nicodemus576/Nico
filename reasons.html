@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jar of Fun 🫙</title>
+  <link rel="stylesheet" href="reasons.css">
+</head>
+<body>
+
+  <div class="hearts"></div>
+
+  <main class="container">
+    <h1 class="jar-header">Why You’re Awesome 🎉</h1>
+
+    <div class="jar-container">
+      <div class="jar" id="jar">
+        🫙
+      </div>
+      <div class="reasons" id="reasons">
+        <!-- Reasons will appear here -->
+      </div>
+    </div>
+
+    <button id="showReasons">Shake the Jar 💫</button>
+  </main>
+
+  <script>
+    const reasonsList = [
+      "You always know how to make people laugh 😂",
+      "Your energy makes days brighter ☀️",
+      "You’re genuinely kind and thoughtful 💛",
+      "You make ordinary moments fun 🎈",
+      "You inspire people without even trying 🌟"
+    ];
+
+    const jar = document.getElementById("jar");
+    const reasonsDiv = document.getElementById("reasons");
+    const button = document.getElementById("showReasons");
+
+    button.addEventListener("click", () => {
+      // Shake jar animation
+      jar.classList.add("shake");
+      setTimeout(() => jar.classList.remove("shake"), 600);
+
+      // Clear previous reasons
+      reasonsDiv.innerHTML = "";
+
+      // Show reasons one by one
+      reasonsList.forEach((reason, index) => {
+        setTimeout(() => {
+          const span = document.createElement("span");
+          span.textContent = reason;
+          span.classList.add("reason");
+          reasonsDiv.appendChild(span);
+        }, index * 600);
+      });
+    });
+
+    // Floating hearts
+    const heartContainer = document.querySelector(".hearts");
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("span");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 6 + Math.random() * 6 + "s";
+      heart.style.animationDelay = Math.random() * 5 + "s";
+      heartContainer.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>

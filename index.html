@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Valentine 💖</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="Page 1.css">
+</head>
+<body>
+
+  <!-- Ambient Sound -->
+  <audio id="ambientSound" loop>
+    <source src="ambient.mp3" type="audio/mpeg">
+  </audio>
+  <button id="soundToggle" aria-label="Toggle sound">🔊</button>
+
+  <!-- Floating Hearts -->
+  <div class="hearts"></div>
+
+  <main class="container">
+    <div class="envelope-card">
+      <h1>HAPPY VALENTINE</h1>
+
+      <p class="question">Do you want to see your Valentine gift?</p>
+
+      <div class="buttons">
+        <a href="gifts.html" class="btn yes">YES PLEASE</a>
+        <a href="Page 2.html" class="btn no">NO THANKS</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    /* ---------- Ambient Sound Toggle ---------- */
+    const sound = document.getElementById("ambientSound");
+    const toggle = document.getElementById("soundToggle");
+    let playing = false;
+
+    toggle.addEventListener("click", () => {
+      if (!playing) {
+        sound.volume = 0.2;
+        sound.play();
+        toggle.textContent = "🔈";
+      } else {
+        sound.pause();
+        toggle.textContent = "🔊";
+      }
+      playing = !playing;
+    });
+
+    /* ---------- Floating Hearts ---------- */
+    const heartContainer = document.querySelector(".hearts");
+
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("span");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 6 + Math.random() * 6 + "s";
+      heart.style.animationDelay = Math.random() * 5 + "s";
+      heartContainer.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Try Again 💔</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Page 2.css">
+</head>
+<body>
+
+  <!-- Ambient Sound Reuse -->
+  <audio id="ambientSound" loop>
+    <source src="ambient.mp3" type="audio/mpeg">
+  </audio>
+  <button id="soundToggle" aria-label="Toggle sound">🔊</button>
+
+  <!-- Floating Clouds/Emojis -->
+  <div class="sad-clouds"></div>
+
+  <main class="container">
+    <div class="card-no">
+      <p class="try-text">I promise you’ll love it, try again.</p>
+      <a href="index.html" class="btn try-again">TRY AGAIN</a>
+    </div>
+  </main>
+
+  <script>
+    /* ---------- Ambient Sound Toggle ---------- */
+    const sound = document.getElementById("ambientSound");
+    const toggle = document.getElementById("soundToggle");
+    let playing = false;
+
+    toggle.addEventListener("click", () => {
+      if (!playing) {
+        sound.volume = 0.2;
+        sound.play();
+        toggle.textContent = "🔈";
+      } else {
+        sound.pause();
+        toggle.textContent = "🔊";
+      }
+      playing = !playing;
+    });
+
+    /* ---------- Floating Sad Clouds/Emojis ---------- */
+    const cloudContainer = document.querySelector(".sad-clouds");
+    const emojis = ["☁️", "😢", "💧"];
+
+    for (let i = 0; i < 20; i++) {
+      const span = document.createElement("span");
+      span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.fontSize = (16 + Math.random()*24) + "px";
+      span.style.animationDuration = (6 + Math.random()*6) + "s";
+      span.style.animationDelay = Math.random()*5 + "s";
+      cloudContainer.appendChild(span);
+    }
+  </script>
+
+</body>
+</html>

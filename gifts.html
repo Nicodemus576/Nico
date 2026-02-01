@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>These Are For You 💖</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="gifts.css">
+</head>
+<body>
+
+  <!-- Ambient Sound -->
+  <audio id="ambientSound" loop>
+    <source src="ambient.mp3" type="audio/mpeg">
+  </audio>
+  <button id="soundToggle" aria-label="Toggle sound">🔊</button>
+
+  <!-- Floating Hearts -->
+  <div class="hearts"></div>
+
+  <main class="container">
+    <h1 class="gifts-header">THESE ARE FOR YOU</h1>
+
+    <div class="gift-cards">
+      <!-- Headphones -->
+      <div class="gift-card" id="headphones">
+        <div class="emoji">🎧</div>
+        <p>Headphones Box</p>
+      </div>
+
+      <!-- Envelope -->
+      <div class="gift-card" id="envelope">
+        <div class="emoji">💌</div>
+        <p>Envelope</p>
+      </div>
+
+      <!-- Jar -->
+      <div class="gift-card" id="jar">
+        <div class="emoji">🫙</div>
+        <p>Jar of Love</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    /* ---------- Ambient Sound Toggle ---------- */
+    const sound = document.getElementById("ambientSound");
+    const toggle = document.getElementById("soundToggle");
+    let playing = false;
+
+    toggle.addEventListener("click", () => {
+      if (!playing) {
+        sound.volume = 0.2;
+        sound.play();
+        toggle.textContent = "🔈";
+      } else {
+        sound.pause();
+        toggle.textContent = "🔊";
+      }
+      playing = !playing;
+    });
+
+    /* ---------- Floating Hearts ---------- */
+    const heartContainer = document.querySelector(".hearts");
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("span");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 6 + Math.random()*6 + "s";
+      heart.style.animationDelay = Math.random()*5 + "s";
+      heartContainer.appendChild(heart);
+    }
+
+    /* ---------- Gift Click Actions ---------- */
+    document.getElementById("headphones").addEventListener("click", () => {
+      window.open("https://youtu.be/JYdAEu_wcgU?si=ewx83hYrV5uJlP3S", "_blank");
+    });
+
+    document.getElementById("envelope").addEventListener("click", () => {
+      window.location.href = "Letter.html";
+    });
+
+    document.getElementById("jar").addEventListener("click", () => {
+      window.location.href = "reasons.html";
+    });
+
+    /* ---------- Shake Animation on Jar ---------- */
+    const jar = document.getElementById("jar");
+    jar.addEventListener("mouseenter", () => {
+      jar.classList.add("shake");
+      setTimeout(() => jar.classList.remove("shake"), 600);
+    });
+  </script>
+
+</body>
+</html>
